@@ -1,39 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\xrint\Documents\K8s\kompose-windows-amd64.exe convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: pub-ingestor
   name: pub-ingestor
+  labels:
+    app: pub-ingestor
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: pub-ingestor
-  strategy: {}
+      app: pub-ingestor
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\Users\xrint\Documents\K8s\kompose-windows-amd64.exe convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: pub-ingestor
+        app: pub-ingestor
     spec:
       containers:
-      - env:
-        - name: ZMQ_ADDRESS
-          value: tcp://*:3000
+      - name: pub-ingestor
         image: ojjsaw/pub-ingestor:latest
-        imagePullPolicy: Always
-        name: pub-ingestor
         ports:
         - containerPort: 3000
+        env:
+        - name: ZMQ_ADDRESS
+          value: tcp://*:3000
+        imagePullPolicy: Always        
         resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
-status: {}

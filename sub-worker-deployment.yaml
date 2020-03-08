@@ -1,37 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\xrint\Documents\K8s\kompose-windows-amd64.exe convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: sub-worker
   name: sub-worker
+  labels:
+    app: sub-worker
 spec:
   replicas: 3
   selector:
     matchLabels:
-      io.kompose.service: sub-worker
-  strategy: {}
+      app: sub-worker
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\Users\xrint\Documents\K8s\kompose-windows-amd64.exe convert
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
-        io.kompose.service: sub-worker
+        app: sub-worker
     spec:
       containers:
-      - env:
-        # - name: ZMQ_ADDRESS
-        #   value: tcp://10.100.211.143:3000
+      - name: sub-worker
         image: ojjsaw/sub-worker:latest
         imagePullPolicy: Always
-        name: sub-worker
         resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
-      volumes: null
-status: {}
