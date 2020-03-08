@@ -1,0 +1,14 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "Simulates workload workers.",
+  "main": "app-worker.js",
+  "scripts": {
+    "start": "node app-worker.js"
+  },
+  "author": "ojjsaw",
+  "license": "MIT",
+  "dependencies": {
+    "zeromq": "^6.0.0-beta.6"
+  }
+}

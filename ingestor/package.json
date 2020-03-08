@@ -1,0 +1,15 @@
+{
+  "name": "ingestor",
+  "version": "1.0.0",
+  "description": "Simulates data ingenstion.",
+  "main": "app-ingestor.js",
+  "scripts": {
+    "start": "node app-ingestor.js"
+  },
+  "keywords": [],
+  "author": "ojjsaw",
+  "license": "MIT",
+  "dependencies": {
+    "zeromq": "^6.0.0-beta.6"
+  }
+}
