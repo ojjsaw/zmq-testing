@@ -1,6 +1,7 @@
 const zmq = require("zeromq")
+var ip = require('ip');
 const address = process.env.ZMQ_ADDRESS || `tcp://*:3000`;
-const pub_topic = "kitty cats";
+const pub_topic = "topic1";
 
 async function run() {
   const sock = new zmq.Publisher
@@ -12,8 +13,8 @@ async function run() {
   var counter = 0;
 
   while (true) {
-    console.log("sending a msg envelope " + counter)
-    await sock.send([pub_topic, counter])
+    console.log("sending: " + ip.address() + " , " + counter)
+    await sock.send([pub_topic, ip.address() + " , " + counter])
     counter++;
     await new Promise(resolve => setTimeout(resolve, 500));
   }

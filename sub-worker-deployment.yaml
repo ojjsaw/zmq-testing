@@ -5,7 +5,7 @@ metadata:
   labels:
     app: sub-worker
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: sub-worker
@@ -14,6 +14,10 @@ spec:
       labels:
         app: sub-worker
     spec:
+      initContainers:
+      - name: init-myservice
+        image: busybox:latest
+        command: ['sh', '-c', 'until nslookup pub-ingestor; do echo waiting for pub-ingestor; done;']
       containers:
       - name: sub-worker
         image: ojjsaw/sub-worker:latest

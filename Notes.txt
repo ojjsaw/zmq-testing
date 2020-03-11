@@ -1,0 +1,12 @@
+while($true) { kubectl.exe get pods; }
+
+kubectl delete deployment sub-worker pub-ingestor
+kubectl delete service pub-ingestor
+
+kubectl apply -f .\pub-ingestor-deployment.yaml
+kubectl apply -f .\pub-ingestor-service.yaml
+kubectl apply -f .\sub-worker-deployment.yaml
+
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All 
+
+minikube start --vm-driver=hyperv
