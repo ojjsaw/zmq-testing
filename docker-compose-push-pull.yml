@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  push-ingestor:
+    image: ojjsaw/push-ingestor
+    environment:
+    - ZMQ_ADDRESS=tcp://*:3000
+    ports:
+        - 3000:3000
+  pull-worker:
+    image: ojjsaw/pull-worker
+    environment:
+    - ZMQ_ADDRESS=tcp://192.168.56.1:3000

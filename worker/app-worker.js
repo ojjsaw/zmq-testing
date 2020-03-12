@@ -4,15 +4,14 @@ const address = process.env.PUB_INGESTOR_PORT || process.env.ZMQ_ADDRESS || `tcp
 const sub_topic = "topic1";
 
 async function run() {
-  const sock = new zmq.Subscriber
+  const sock = new zmq.Pull
 
   console.log(`trying for: ${address}`);
   sock.connect(address)
-  sock.subscribe(sub_topic);
   console.log(`Subscriber connected to ${address}`);
 
-  for await (const [topic, msg] of sock) {
-    console.log("sub: " + ip.address() + " , " + "Topic: " + topic + ", msg: " + msg)
+  for await (const [msg] of sock) {
+    console.log("sub: " + ip.address() + ", msg: " + msg)
   }
 }
 
