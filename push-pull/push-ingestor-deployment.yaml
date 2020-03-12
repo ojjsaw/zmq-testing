@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: push-ingestor
+  labels:
+    app: push-ingestor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: push-ingestor
+  template:
+    metadata:
+      labels:
+        app: push-ingestor
+    spec:
+      containers:
+      - name: push-ingestor
+        image: ojjsaw/push-ingestor:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: ZMQ_ADDRESS
+          value: tcp://*:3000
+        imagePullPolicy: Always        
+        resources: {}
+      restartPolicy: Always

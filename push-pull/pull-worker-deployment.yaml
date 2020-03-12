@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pull-worker
+  labels:
+    app: pull-worker
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: pull-worker
+  template:
+    metadata:
+      labels:
+        app: pull-worker
+    spec:
+      containers:
+      - name: pull-worker
+        image: ojjsaw/pull-worker:latest
+        imagePullPolicy: Always
+        resources: {}
+      restartPolicy: Always

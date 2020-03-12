@@ -1,6 +1,6 @@
 const zmq = require("zeromq")
 var ip = require('ip');
-const address = process.env.PUB_INGESTOR_PORT || process.env.ZMQ_ADDRESS || `tcp://127.0.0.1:3000`;
+const address = process.env.PUSH_INGESTOR_PORT || process.env.ZMQ_ADDRESS || `tcp://127.0.0.1:3000`;
 const sub_topic = "topic1";
 
 async function run() {
